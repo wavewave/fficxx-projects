@@ -15,3 +15,8 @@ and `use.nix` is for using the generated binding package.
 ```
 nix-shell use.nix
 ```
+
+# all build
+```
+nix-build release.nix
+```
