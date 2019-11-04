@@ -36,7 +36,7 @@ jobs:
             curl -OL "https://nixos.org/releases/nix/nix-${NIX_RELEASE}/nix-${NIX_RELEASE}-${ARCH}-linux.tar.xz"
             tar -xJvf "nix-${NIX_RELEASE}-${ARCH}-linux.tar.xz"
 
-            yes | "nix-${NIX_RELEASE}-${ARCH}-linux/install" || true
+            yes | sudo "nix-${NIX_RELEASE}-${ARCH}-linux/install" || true
 
       - run:
           name: Build
