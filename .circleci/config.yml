@@ -28,6 +28,11 @@ jobs:
             echo "export NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/$NIXPKGS_REV.tar.gz" >> $BASH_ENV
 
       - run:
+          name: Git submodule
+          command: |
+            git submodule update --init --recursive
+
+      - run:
           name: Build
           command: |
             nix-build release.nix
