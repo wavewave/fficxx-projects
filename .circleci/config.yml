@@ -16,11 +16,17 @@ jobs:
     steps:
       - checkout
 
+      - "run":
+          name: "Prepare For Cache Key"
+          command: |
+            echo "${NIXPKGS_REV}" > nixpkgs.rev
+
       # Download and cache dependencies
       - restore_cache:
+          name: "Restore Nix Store Paths"
           keys:
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - paymentserver-nix-store-v1-{{ checksum "nixpkgs.rev" }}
+            - paymentserver-nix-store-v1-
 
       - run:
           name: Setup NIX_PATH Environment Variable
