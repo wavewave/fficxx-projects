@@ -23,16 +23,19 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
           name: Install Nix
           command: |
+            [[ -d /nix ]] || sudo mkdir -m 0755 /nix
+            sudo chown ubuntu /nix
+
             NIX_RELEASE=2.3.1
             ARCH=x86_64
             curl -OL "https://nixos.org/releases/nix/nix-${NIX_RELEASE}/nix-${NIX_RELEASE}-${ARCH}-linux.tar.xz"
             tar -xJvf "nix-${NIX_RELEASE}-${ARCH}-linux.tar.xz"
+
             yes | "nix-${NIX_RELEASE}-${ARCH}-linux/install" || true
 
       - run:
