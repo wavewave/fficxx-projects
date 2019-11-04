@@ -8,7 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
-      - image: circleci/python:3.6.1
+      - image: nixorg/nix:circleci
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -25,15 +25,6 @@ jobs:
           keys:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run:
-          name: Install Nix
-          command: |
-            NIX_RELEASE=2.3.1
-            ARCH=x86_64
-            curl -OL "https://nixos.org/releases/nix/nix-${NIX_RELEASE}/nix-${NIX_RELEASE}-${ARCH}-linux.tar.xz"
-            tar -xJvf "nix-${NIX_RELEASE}-${ARCH}-linux.tar.xz"
-
-            yes | sudo "nix-${NIX_RELEASE}-${ARCH}-linux/install" || true
 
       - run:
           name: Build
