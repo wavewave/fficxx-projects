@@ -33,9 +33,29 @@ jobs:
             git submodule update --init --recursive
 
       - run:
-          name: Build
+          name: Build fficxx
           command: |
-            nix-build release.nix
+            nix-build release.nix -A fficxx
+
+      - run:
+          name: Build stdcxx
+          command: |
+            nix-build release.nix -A stdcxx
+
+      - run:
+          name: Build HROOT
+          command: |
+            nix-build release.nix -A HROOT
+
+      - run:
+          name: Build hgdal
+          command: |
+            nix-build release.nix -A hgdal
+
+      - run:
+          name: Build hgdal
+          command: |
+            nix-build release.nix -A OGDF
 
       - save_cache:
           paths:
