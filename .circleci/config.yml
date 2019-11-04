@@ -31,8 +31,8 @@ jobs:
           command: |
             NIX_RELEASE=2.3.1
             ARCH=x86_64
-            curl -OL "https://nixos.org/releases/nix/nix-${NIX_RELEASE}/nix-${NIX_RELEASE}-${ARCH}-linux.tar.bz2"
-            tar -xjvf "nix-${NIX_RELEASE}-${ARCH}-linux.tar.bz2"
+            curl -OL "https://nixos.org/releases/nix/nix-${NIX_RELEASE}/nix-${NIX_RELEASE}-${ARCH}-linux.tar.xz"
+            tar -xJvf "nix-${NIX_RELEASE}-${ARCH}-linux.tar.xz"
             yes | "nix-${NIX_RELEASE}-${ARCH}-linux/install" || true
 
       - run:
