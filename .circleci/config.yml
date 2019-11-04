@@ -28,9 +28,6 @@ jobs:
       - run:
           name: Install Nix
           command: |
-            [[ -d /nix ]] || sudo mkdir -m 0755 /nix
-            sudo chown ubuntu /nix
-
             NIX_RELEASE=2.3.1
             ARCH=x86_64
             curl -OL "https://nixos.org/releases/nix/nix-${NIX_RELEASE}/nix-${NIX_RELEASE}-${ARCH}-linux.tar.xz"
