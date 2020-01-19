@@ -15,7 +15,7 @@ let
     };
   };
 
-  stdcxxNix = import (fficxxSrc + "/stdcxx-gen/default.nix") {
+  stdcxxSrc = import ./stdcxx-gen/gen.nix {
     inherit stdenv;
     haskellPackages = newHaskellPackages0;
   };
@@ -25,7 +25,7 @@ let
       {
         "fficxx-runtime" = self.callCabal2nix "fficxx-runtime" (fficxxSrc + "/fficxx-runtime") {};
         "fficxx"         = self.callCabal2nix "fficxx"         (fficxxSrc + "/fficxx")         {};
-        "stdcxx"         = self.callPackage stdcxxNix {};
+        "stdcxx"         = self.callCabal2nix "stdcxx"         stdcxxSrc                       {};
       }
       // (import ./HROOT   { inherit pkgs fficxxSrc; } self super)
       // (import ./hgdal   { inherit pkgs fficxxSrc; } self super)
