@@ -15,7 +15,7 @@ let
     };
   };
 
-  stdcxxSrc = import ./stdcxx-gen/gen.nix {
+  stdcxxSrc = import (fficxxSrc + "/stdcxx-gen/gen.nix") {
     inherit stdenv;
     haskellPackages = newHaskellPackages0;
   };
