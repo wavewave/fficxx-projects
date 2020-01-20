@@ -62,6 +62,7 @@ jobs:
           name: Build OGDF
           command: |
             nix-build release.nix -A OGDF
+          no_output_timeout: 20m
 
       - save_cache:
           paths:
