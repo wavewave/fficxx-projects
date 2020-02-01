@@ -5,7 +5,7 @@ with pkgs;
 let
   # TODO: should be packaged into the upstream nixpkgs.
   ogdf = callPackage ./hs-ogdf/ogdf/default.nix {};
-  DataFrame = callPackage ./DataFrame/DataFrame/default.nix {};
+  DataFrame = callPackage ./HDataFrame/DataFrame/default.nix {};
 
   fficxxSrc = lib.cleanSource ./fficxx;
 
