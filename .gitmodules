@@ -10,3 +10,6 @@
 [submodule "hgdal"]
 	path = hgdal
 	url = git@github.com:wavewave/hgdal.git
+[submodule "HDataFrame"]
+	path = HDataFrame
+	url = git@github.com:wavewave/HDataFrame.git
