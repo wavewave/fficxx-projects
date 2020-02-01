@@ -5,6 +5,7 @@ with pkgs;
 let
   # TODO: should be packaged into the upstream nixpkgs.
   ogdf = callPackage ./hs-ogdf/ogdf/default.nix {};
+  DataFrame = callPackage ./DataFrame/DataFrame/default.nix {};
 
   fficxxSrc = lib.cleanSource ./fficxx;
 
@@ -42,5 +43,5 @@ in
   "HROOT"          = newHaskellPackages.HROOT;
   "hgdal"          = newHaskellPackages.hgdal;
   "OGDF"           = newHaskellPackages.OGDF;
-
+  "DataFrame"      = DataFrame;
 }
