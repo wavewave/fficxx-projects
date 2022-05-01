@@ -1,6 +1,6 @@
 # fficxx-projects
 
-[![CircleCI](https://circleci.com/gh/wavewave/fficxx-projects.svg?style=svg)](https://circleci.com/gh/wavewave/fficxx-projects)
+![Build](https://github.com/wavewave/fficxx-projects/actions/workflows/build.yml/badge.svg)
 
 Collection of public Haskell/C++ binding projects using fficxx
 
