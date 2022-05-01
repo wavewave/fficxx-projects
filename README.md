@@ -1,6 +1,6 @@
 # fficxx-projects
 
-![Build](https://github.com/wavewave/fficxx-projects/actions/workflows/build/badge.svg)
+![Build](https://github.com/wavewave/fficxx-projects/actions/workflows/build.yml/badge.svg)
 
 Collection of public Haskell/C++ binding projects using fficxx
 
