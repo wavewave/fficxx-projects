@@ -4,8 +4,10 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out repository code
+    - name: Checkout repository code
       uses: actions/checkout@v3
+      with:
+        submodules: recursive
     - name: List files in the repository
       run: |
         ls ${{ github.workspace }}
