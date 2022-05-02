@@ -15,5 +15,52 @@ jobs:
       uses: cachix/install-nix-action@v16
       with:
         nix_path: nixpkgs=channel:nixos-unstable
-    - name: Build with release.nix
-      run: nix-build release.nix
+    - name: check flake
+      run: |
+        nix flake check
+    - name: build fficxx-runtime
+      run: |
+        nix build --print-build-logs .#fficxx-runtime
+    - name: build fficxx
+      run: |
+        nix build --print-build-logs .#fficxx
+    - name: build stdcxx
+      run: |
+        nix build --print-build-logs .#stdcxx
+    - name: build HROOT-core
+      run: |
+        nix build --print-build-logs .#HROOT-core
+    - name: build HROOT-io
+      run: |
+        nix build --print-build-logs .#HROOT-io
+    - name: build HROOT-math
+      run: |
+        nix build --print-build-logs .#HROOT-math
+    - name: build HROOT-net
+      run: |
+        nix build --print-build-logs .#HROOT-net
+    - name: build HROOT-hist
+      run: |
+        nix build --print-build-logs .#HROOT-hist
+    - name: build HROOT-graf
+      run: |
+        nix build --print-build-logs .#HROOT-graf
+    - name: build HROOT
+      run: |
+        nix build --print-build-logs .#HROOT
+    - name: build HROOT-RooFit
+      run: |
+        nix build --print-build-logs .#HROOT-RooFit
+    - name: build HROOT-RooFit-RooStats
+      run: |
+        nix build --print-build-logs .#HROOT-RooFit-RooStats
+    - name: build hgdal
+      run: |
+        nix build --print-build-logs .#hgdal
+    - name: build OGDF (C++ library)
+      run: |
+        nix build --print-build-logs .#ogdf
+    - name: build OGDF (Haskell binding)
+      run: |
+        nix build --print-build-logs .#OGDF
+
