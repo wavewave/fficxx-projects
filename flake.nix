@@ -81,9 +81,11 @@
           HROOT-RooFit-RooStats hgdal OGDF;
         inherit HROOT-env hgdal-env OGDF-env;
 
-        haskellPackages = newHaskellPackages;
-
       };
+
+      # A nested package set should be legacyPackages.
+      # https://discourse.nixos.org/t/flake-questions/8741/2
+      legacyPackages.x86_64-linux = { haskellPackages = newHaskellPackages; };
 
       devShell.x86_64-linux = with pkgs;
         let

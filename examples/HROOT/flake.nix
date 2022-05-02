@@ -13,7 +13,7 @@
       devShell.x86_64-linux = with pkgs;
         let
           hsenv =
-            fficxx-projects.packages.x86_64-linux.haskellPackages.ghcWithPackages
+            fficxx-projects.legacyPackages.x86_64-linux.haskellPackages.ghcWithPackages
             (p: with p; [ cabal-install HROOT monad-loops ]);
         in mkShell {
           buildInputs = [ hsenv ];
