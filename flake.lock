@@ -1,0 +1,99 @@
+{
+  "nodes": {
+    "HROOT": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651370590,
+        "narHash": "sha256-VHjPebuKt582KD9u/YDkNVQs/IsCZvtvChqg8K10M7Y=",
+        "owner": "wavewave",
+        "repo": "HROOT",
+        "rev": "80dcacab62486274a726e3661dd7a0e9180e72de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wavewave",
+        "ref": "master",
+        "repo": "HROOT",
+        "type": "github"
+      }
+    },
+    "fficxx": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651445996,
+        "narHash": "sha256-7eyPL7kD+XiWl6xPLtZUq9X21Y+9CF6P+5rx2tmw1Mk=",
+        "owner": "wavewave",
+        "repo": "fficxx",
+        "rev": "98ce51453a2060b2545d50f9690a65e645aa71c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wavewave",
+        "ref": "0.6",
+        "repo": "fficxx",
+        "type": "github"
+      }
+    },
+    "hgdal": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1581209885,
+        "narHash": "sha256-8ibb8BZn0rlt6bdSxUytFECUJjglE/SvHnq7olJ4dV4=",
+        "owner": "wavewave",
+        "repo": "hgdal",
+        "rev": "f3af34d9e46cdd10a2fece49c9d807f844839708",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wavewave",
+        "ref": "master",
+        "repo": "hgdal",
+        "type": "github"
+      }
+    },
+    "hs-ogdf": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1580819174,
+        "narHash": "sha256-DhQE9xnBLtquOv6XrC+t3MPbSyWm8YBTc1cvCbrwvuo=",
+        "owner": "wavewave",
+        "repo": "hs-ogdf",
+        "rev": "2e385e12d59b2d432b54f6ff607e7b3b5f6d4366",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wavewave",
+        "ref": "master",
+        "repo": "hs-ogdf",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1620055814,
+        "narHash": "sha256-8LEHoYSJiL901bTMVatq+rf8y7QtWuZhwwpKE2fyaRY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1db42b7fe3878f3f5f7a4f2dc210772fd080e205",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-20.03",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "HROOT": "HROOT",
+        "fficxx": "fficxx",
+        "hgdal": "hgdal",
+        "hs-ogdf": "hs-ogdf",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
