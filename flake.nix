@@ -62,6 +62,16 @@
 
       };
 
+      mkEnv = pkgname:
+        let
+          hsenv = newHaskellPackages.ghcWithPackages
+            (p: [ (builtins.getAttr pkgname p) ]);
+        in pkgs.mkShell { buildInputs = [ hsenv ]; };
+
+      HROOT-env = mkEnv "HROOT";
+      hgdal-env = mkEnv "hgdal";
+      OGDF-env = mkEnv "OGDF";
+
     in {
       packages.x86_64-linux = {
         inherit ogdf;
@@ -69,6 +79,7 @@
           fficxx fficxx-runtime stdcxx HROOT HROOT-core HROOT-graf HROOT-hist
           HROOT-io HROOT-math HROOT-net HROOT-tree HROOT-RooFit
           HROOT-RooFit-RooStats hgdal OGDF;
+        inherit HROOT-env hgdal-env OGDF-env;
 
       };
 
