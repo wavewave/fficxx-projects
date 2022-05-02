@@ -81,6 +81,8 @@
           HROOT-RooFit-RooStats hgdal OGDF;
         inherit HROOT-env hgdal-env OGDF-env;
 
+        haskellPackages = newHaskellPackages;
+
       };
 
       devShell.x86_64-linux = with pkgs;
