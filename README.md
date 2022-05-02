@@ -6,6 +6,29 @@ Collection of public Haskell/C++ binding projects using fficxx
 
 This is an umbrella repo for various public projects using fficxx. This repo has each project as git submodule and provide a unified build for them.
 
+## Prerequisites
+
+This project uses Nix >= 2.4 using experimental [nix flakes](https://nixos.wiki/wiki/Flakes) feature.
+
+## Build
+
+After installing Nix >= 2.4 with flakes, each fficxx library can be built by (HROOT for example)
+```
+$ nix build .#HROOT
+```
+
+## Play with each project
+
+(project_name)-env package will provide a playground (Haskell environment with the library pre-installed inside the shell).
+For example, HROOT-env.
+```
+$ nix develop .#HROOT-env
+$ ghci
+GHCi, version 8.6.5: http://www.haskell.org/ghc/  :? for help
+Prelude> import HROOT
+Prelude HROOT>
+```
+
 ## Projects
 
 ### HROOT
@@ -20,20 +43,3 @@ This is an umbrella repo for various public projects using fficxx. This repo has
 [OGDF](https://ogdf.uos.de/) stands both for Open Graph Drawing Framework (the original name) and Open Graph algorithms and Data structures Framework.
 
 OGDF is a self-contained C++ library for graph algorithms, in particular for (but not restricted to) automatic graph drawing. It offers sophisticated algorithms and data structures to use within your own applications or scientific projects. The library is available under the GNU General Public License.
-
-## common convention
-
-In each project (HROOT and hgdal currently),
-`shell.nix` is for development,
-```
-nix-shell shell.nix
-```
-and `use.nix` is for using the generated binding package.
-```
-nix-shell use.nix
-```
-
-## all build
-```
-nix-build release.nix
-```
