@@ -43,16 +43,16 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1651542432,
-        "narHash": "sha256-9M+I3q/wFiloqFeqPw+ChmeQOwdWKrvj+4t9ggbo0cQ=",
+        "lastModified": 1651545538,
+        "narHash": "sha256-2YIAXFMe6dgkr0GRv0w+H7EA28iowm2Vr2/sqIWV258=",
         "owner": "wavewave",
         "repo": "fficxx-projects",
-        "rev": "be3b3c69c1cee5c3f4cdcca368bf0ab880f96173",
+        "rev": "333e2562be35439987b6062bb8d0e056244dc7ed",
         "type": "github"
       },
       "original": {
         "owner": "wavewave",
-        "ref": "overlay",
+        "ref": "master",
         "repo": "fficxx-projects",
         "type": "github"
       }
