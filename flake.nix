@@ -41,24 +41,26 @@
 
       ogdf = pkgs.callPackage (hs-ogdf + "/ogdf") { };
 
+      finalHaskellOverlay = self: super:
+        {
+          "fficxx-runtime" =
+            self.callCabal2nix "fficxx-runtime" (fficxx + "/fficxx-runtime")
+            { };
+          "fficxx" = self.callCabal2nix "fficxx" (fficxx + "/fficxx") { };
+          "stdcxx" = self.callCabal2nix "stdcxx" stdcxxSrc { };
+        } // (import HROOT {
+          inherit pkgs;
+          fficxxSrc = fficxx;
+        } self super) // (import hgdal {
+          inherit pkgs;
+          fficxxSrc = fficxx;
+        } self super) // (import hs-ogdf {
+          inherit pkgs ogdf;
+          fficxxSrc = fficxx;
+        } self super);
+
       newHaskellPackages = haskellPackages.override {
-        overrides = self: super:
-          {
-            "fficxx-runtime" =
-              self.callCabal2nix "fficxx-runtime" (fficxx + "/fficxx-runtime")
-              { };
-            "fficxx" = self.callCabal2nix "fficxx" (fficxx + "/fficxx") { };
-            "stdcxx" = self.callCabal2nix "stdcxx" stdcxxSrc { };
-          } // (import HROOT {
-            inherit pkgs;
-            fficxxSrc = fficxx;
-          } self super) // (import hgdal {
-            inherit pkgs;
-            fficxxSrc = fficxx;
-          } self super) // (import hs-ogdf {
-            inherit pkgs ogdf;
-            fficxxSrc = fficxx;
-          } self super);
+        overrides = finalHaskellOverlay;
 
       };
 
@@ -83,9 +85,11 @@
 
       };
 
-      # A nested package set should be legacyPackages.
-      # https://discourse.nixos.org/t/flake-questions/8741/2
-      legacyPackages.x86_64-linux = { haskellPackages = newHaskellPackages; };
+      overlay = final: prev: {
+        haskellPackages = prev.haskell.packages.ghc865.override {
+          overrides = finalHaskellOverlay;
+        };
+      };
 
       devShell.x86_64-linux = with pkgs;
         let
