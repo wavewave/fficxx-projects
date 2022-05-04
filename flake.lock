@@ -18,13 +18,17 @@
       }
     },
     "fficxx": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1651445996,
-        "narHash": "sha256-7eyPL7kD+XiWl6xPLtZUq9X21Y+9CF6P+5rx2tmw1Mk=",
+        "lastModified": 1651690367,
+        "narHash": "sha256-BdNHDse/RnTU6zLsNVrrqGvOX9ZN/X+vn+SKv6Xq1fQ=",
         "owner": "wavewave",
         "repo": "fficxx",
-        "rev": "98ce51453a2060b2545d50f9690a65e645aa71c2",
+        "rev": "388966e43f10a1f7370f61d1ab12a818804adede",
         "type": "github"
       },
       "original": {
