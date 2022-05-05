@@ -51,18 +51,6 @@
 
       };
 
-      # see these issues and discussions:
-      # - https://github.com/NixOS/nixpkgs/issues/16394
-      # - https://github.com/NixOS/nixpkgs/issues/25887
-      # - https://github.com/NixOS/nixpkgs/issues/26561
-      # - https://discourse.nixos.org/t/nix-haskell-development-2020/6170
-      #  final: prev: {
-      #  haskellPackages = prev.haskellPackages.override (old: {
-      #    overrides = final.lib.composeExtensions (old.overrides or (_: _: { }))
-      #      finalHaskellOverlay;
-      #  });
-      #};
-
       devShell.x86_64-linux = with pkgs;
         let
           hsenv = haskellPackages.ghcWithPackages
