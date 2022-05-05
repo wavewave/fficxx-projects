@@ -17,16 +17,15 @@ After installing Nix >= 2.4 with flakes, each fficxx library can be built by (HR
 $ nix build .#HROOT
 ```
 
-## Play with each project
+## Play with each project examples
 
-(project_name)-env package will provide a playground (Haskell environment with the library pre-installed inside the shell).
-For example, HROOT-env.
+nix develop shell (by `nix develop .#(project_name)`) will provide a playground shell environment with pre-installed
+Haskell/C++ dependencies minimally required for building examples in each corresponding directory under `examples`.
+The following is the HROOT example:
 ```
-$ nix develop .#HROOT-env
-$ ghci
-GHCi, version 8.6.5: http://www.haskell.org/ghc/  :? for help
-Prelude> import HROOT
-Prelude HROOT>
+$ nix develop .#HROOT
+$ cd examples/HROOT
+$ ghc random2dApp.hs
 ```
 
 ## Projects
