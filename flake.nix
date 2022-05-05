@@ -43,6 +43,7 @@
 
     in {
       packages.x86_64-linux = {
+        inherit (pkgs) ogdf;
         inherit (pkgs.haskellPackages)
           fficxx-runtime fficxx stdcxx HROOT HROOT-core HROOT-graf HROOT-hist
           HROOT-io HROOT-math HROOT-net HROOT-tree HROOT-RooFit
