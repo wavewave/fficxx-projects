@@ -1,13 +1,14 @@
 {
   description = "HROOT examples";
   inputs = {
-    fficxx = { url = "/home/wavewave/repo/src/fficxx"; };
+    fficxx = { url = "github:wavewave/fficxx/0.6"; };
+    HROOT = { url = "github:wavewave/HROOT/master"; };
     fficxx-projects = { url = "github:wavewave/fficxx-projects/master"; };
   };
-  outputs = { self, fficxx, fficxx-projects }:
+  outputs = { self, fficxx, HROOT, fficxx-projects }:
     let
       pkgs = import (fficxx-projects.inputs.nixpkgs) {
-        overlays = [ fficxx.overlay fficxx-projects.overlay ];
+        overlays = [ fficxx.overlay HROOT.overlay fficxx-projects.overlay ];
         system = "x86_64-linux";
         config = { allowBroken = true; };
       };
