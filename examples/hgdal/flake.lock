@@ -54,13 +54,18 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "narHash": "sha256-0jS7eoKQARpxRDnct1wXs7t+nVoc7ZU/F0u63n0ltpI=",
-        "path": "/nix/store/zdl925r8kyyivpm6vfm54pfgcl70zzh4-source",
-        "type": "path"
+        "lastModified": 1651776756,
+        "narHash": "sha256-EYMqQLUYfrBMgyPQiw91ZSVA813ObZv99b443u1VErc=",
+        "owner": "wavewave",
+        "repo": "fficxx-projects",
+        "rev": "a72951e56a7a33bbb51b071f74eba532888694fa",
+        "type": "github"
       },
       "original": {
-        "path": "/nix/store/zdl925r8kyyivpm6vfm54pfgcl70zzh4-source",
-        "type": "path"
+        "owner": "wavewave",
+        "ref": "master",
+        "repo": "fficxx-projects",
+        "type": "github"
       }
     },
     "fficxx_2": {

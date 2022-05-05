@@ -77,11 +77,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1651773783,
-        "narHash": "sha256-iN2zJDU+5Ri60Y1iMg8Wo6yTmHmlY7Ko5AN0Y1emaIg=",
+        "lastModified": 1651776756,
+        "narHash": "sha256-EYMqQLUYfrBMgyPQiw91ZSVA813ObZv99b443u1VErc=",
         "owner": "wavewave",
         "repo": "fficxx-projects",
-        "rev": "9e29e2bf1dc7013a7cd1b7295897b23c29ea51b0",
+        "rev": "a72951e56a7a33bbb51b071f74eba532888694fa",
         "type": "github"
       },
       "original": {
