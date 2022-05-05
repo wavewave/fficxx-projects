@@ -8,7 +8,7 @@
   outputs = { self, fficxx, hgdal, fficxx-projects }:
     let
       pkgs = import (fficxx-projects.inputs.nixpkgs) {
-        overlays = [ fficxx.overlay hgdal.overlay fficxx-projects.overlay ];
+        overlays = [ fficxx.overlay hgdal.overlay ];
         system = "x86_64-linux";
         config = { allowBroken = true; };
       };

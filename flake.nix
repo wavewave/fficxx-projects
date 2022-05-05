@@ -18,30 +18,22 @@
     };
     hs-ogdf = {
       url = "github:wavewave/hs-ogdf/master";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.fficxx.follows = "fficxx";
     };
 
   };
   outputs = { self, nixpkgs, fficxx, HROOT, hgdal, hs-ogdf }:
     let
       pkgs = import nixpkgs {
-        overlays = [ fficxx.overlay HROOT.overlay ];
+        overlays =
+          [ fficxx.overlay HROOT.overlay hgdal.overlay hs-ogdf.overlay ];
         system = "x86_64-linux";
       };
 
-      ogdf = pkgs.callPackage (hs-ogdf + "/ogdf") { };
-
-      finalHaskellOverlay = self: super:
-        (import hs-ogdf {
-          inherit pkgs ogdf;
-          fficxxSrc = fficxx;
-        } self super);
-
-      newHaskellPackages = pkgs.haskellPackages.extend finalHaskellOverlay;
-
       mkEnv = pkgname:
         let
-          hsenv = newHaskellPackages.ghcWithPackages
+          hsenv = pkgs.haskellPackages.ghcWithPackages
             (p: [ (builtins.getAttr pkgname p) ]);
         in pkgs.mkShell { buildInputs = [ hsenv ]; };
 
@@ -51,8 +43,7 @@
 
     in {
       packages.x86_64-linux = {
-        inherit ogdf;
-        inherit (newHaskellPackages)
+        inherit (pkgs.haskellPackages)
           fficxx-runtime fficxx stdcxx HROOT HROOT-core HROOT-graf HROOT-hist
           HROOT-io HROOT-math HROOT-net HROOT-tree HROOT-RooFit
           HROOT-RooFit-RooStats hgdal OGDF;
@@ -65,12 +56,12 @@
       # - https://github.com/NixOS/nixpkgs/issues/25887
       # - https://github.com/NixOS/nixpkgs/issues/26561
       # - https://discourse.nixos.org/t/nix-haskell-development-2020/6170
-      overlay = final: prev: {
-        haskellPackages = prev.haskellPackages.override (old: {
-          overrides = final.lib.composeExtensions (old.overrides or (_: _: { }))
-            finalHaskellOverlay;
-        });
-      };
+      #  final: prev: {
+      #  haskellPackages = prev.haskellPackages.override (old: {
+      #    overrides = final.lib.composeExtensions (old.overrides or (_: _: { }))
+      #      finalHaskellOverlay;
+      #  });
+      #};
 
       devShell.x86_64-linux = with pkgs;
         let
