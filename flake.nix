@@ -13,7 +13,8 @@
     };
     hgdal = {
       url = "github:wavewave/hgdal/master";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.fficxx.follows = "fficxx";
     };
     hs-ogdf = {
       url = "github:wavewave/hs-ogdf/master";
@@ -31,10 +32,7 @@
       ogdf = pkgs.callPackage (hs-ogdf + "/ogdf") { };
 
       finalHaskellOverlay = self: super:
-        (import hgdal {
-          inherit pkgs;
-          fficxxSrc = fficxx;
-        } self super) // (import hs-ogdf {
+        (import hs-ogdf {
           inherit pkgs ogdf;
           fficxxSrc = fficxx;
         } self super);

@@ -1,13 +1,14 @@
 {
   description = "hgdal examples";
   inputs = {
-    fficxx = { url = "/home/wavewave/repo/src/fficxx"; };
+    fficxx = { url = "github:wavewave/fficxx/0.6"; };
+    hgdal = { url = "github:wavewave/hgdal/master"; };
     fficxx-projects = { url = "github:wavewave/fficxx-projects/master"; };
   };
-  outputs = { self, fficxx, fficxx-projects }:
+  outputs = { self, fficxx, hgdal, fficxx-projects }:
     let
       pkgs = import (fficxx-projects.inputs.nixpkgs) {
-        overlays = [ fficxx.overlay fficxx-projects.overlay ];
+        overlays = [ fficxx.overlay hgdal.overlay fficxx-projects.overlay ];
         system = "x86_64-linux";
         config = { allowBroken = true; };
       };
