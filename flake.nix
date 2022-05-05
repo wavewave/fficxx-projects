@@ -56,11 +56,10 @@
     in {
       packages.x86_64-linux = {
         inherit ogdf;
-        stdcxx = pkgs.haskellPackages.stdcxx;
-
         inherit (newHaskellPackages)
-          HROOT HROOT-core HROOT-graf HROOT-hist HROOT-io HROOT-math HROOT-net
-          HROOT-tree HROOT-RooFit HROOT-RooFit-RooStats hgdal OGDF;
+          fficxx-runtime fficxx stdcxx HROOT HROOT-core HROOT-graf HROOT-hist
+          HROOT-io HROOT-math HROOT-net HROOT-tree HROOT-RooFit
+          HROOT-RooFit-RooStats hgdal OGDF;
         inherit HROOT-env hgdal-env OGDF-env;
 
       };
