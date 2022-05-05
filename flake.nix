@@ -4,7 +4,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.03";
     fficxx = {
       url = "github:wavewave/fficxx/0.6";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     HROOT = {
       url = "github:wavewave/HROOT/master";
@@ -22,33 +22,15 @@
   };
   outputs = { self, nixpkgs, fficxx, HROOT, hgdal, hs-ogdf }:
     let
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-
-      haskellPackages = pkgs.haskell.packages.ghc865;
-      newHaskellPackages0 = haskellPackages.override {
-        overrides = self: super: {
-          "fficxx-runtime" =
-            self.callCabal2nix "fficxx-runtime" (fficxx + "/fficxx-runtime")
-            { };
-          "fficxx" = self.callCabal2nix "fficxx" (fficxx + "/fficxx") { };
-        };
-      };
-
-      stdcxxSrc = import (fficxx + "/stdcxx-gen/gen.nix") {
-        inherit (pkgs) stdenv;
-        haskellPackages = newHaskellPackages0;
+      pkgs = import nixpkgs {
+        overlays = [ fficxx.overlay ];
+        system = "x86_64-linux";
       };
 
       ogdf = pkgs.callPackage (hs-ogdf + "/ogdf") { };
 
       finalHaskellOverlay = self: super:
-        {
-          "fficxx-runtime" =
-            self.callCabal2nix "fficxx-runtime" (fficxx + "/fficxx-runtime")
-            { };
-          "fficxx" = self.callCabal2nix "fficxx" (fficxx + "/fficxx") { };
-          "stdcxx" = self.callCabal2nix "stdcxx" stdcxxSrc { };
-        } // (import HROOT {
+        (import HROOT {
           inherit pkgs;
           fficxxSrc = fficxx;
         } self super) // (import hgdal {
@@ -59,10 +41,7 @@
           fficxxSrc = fficxx;
         } self super);
 
-      newHaskellPackages = haskellPackages.override {
-        overrides = finalHaskellOverlay;
-
-      };
+      newHaskellPackages = pkgs.haskellPackages.extend finalHaskellOverlay;
 
       mkEnv = pkgname:
         let
@@ -78,23 +57,29 @@
       packages.x86_64-linux = {
         inherit ogdf;
         inherit (newHaskellPackages)
-          fficxx fficxx-runtime stdcxx HROOT HROOT-core HROOT-graf HROOT-hist
+          fficxx-runtime fficxx stdcxx HROOT HROOT-core HROOT-graf HROOT-hist
           HROOT-io HROOT-math HROOT-net HROOT-tree HROOT-RooFit
           HROOT-RooFit-RooStats hgdal OGDF;
         inherit HROOT-env hgdal-env OGDF-env;
 
       };
 
+      # see these issues and discussions:
+      # - https://github.com/NixOS/nixpkgs/issues/16394
+      # - https://github.com/NixOS/nixpkgs/issues/25887
+      # - https://github.com/NixOS/nixpkgs/issues/26561
+      # - https://discourse.nixos.org/t/nix-haskell-development-2020/6170
       overlay = final: prev: {
-        haskellPackages = prev.haskell.packages.ghc865.override {
-          overrides = finalHaskellOverlay;
-        };
+        haskellPackages = prev.haskellPackages.override (old: {
+          overrides = final.lib.composeExtensions (old.overrides or (_: _: { }))
+            finalHaskellOverlay;
+        });
       };
 
       devShell.x86_64-linux = with pkgs;
         let
-          hsenv = haskell.packages.ghc865.ghcWithPackages
-            (p: with p; [ cabal-install ]);
+          hsenv = haskellPackages.ghcWithPackages
+            (p: [ p.cabal-install p.fficxx p.fficxx-runtime p.stdcxx ]);
         in mkShell {
           buildInputs = [ hsenv ];
           shellHook = "";

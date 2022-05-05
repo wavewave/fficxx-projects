@@ -18,29 +18,30 @@
       }
     },
     "fficxx": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
       "locked": {
-        "lastModified": 1651445996,
-        "narHash": "sha256-7eyPL7kD+XiWl6xPLtZUq9X21Y+9CF6P+5rx2tmw1Mk=",
-        "owner": "wavewave",
-        "repo": "fficxx",
-        "rev": "98ce51453a2060b2545d50f9690a65e645aa71c2",
-        "type": "github"
+        "lastModified": 1651690427,
+        "narHash": "sha256-YLLznRPmzF7iTsFBwDKErCiwOs4jKbx9xp7JGsG3Lr8=",
+        "ref": "master",
+        "rev": "6ed85bc925e9901cde72d473110761d62feb6d4b",
+        "revCount": 1008,
+        "type": "git",
+        "url": "file:///home/wavewave/repo/src/fficxx"
       },
       "original": {
-        "owner": "wavewave",
-        "ref": "0.6",
-        "repo": "fficxx",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/wavewave/repo/src/fficxx"
       }
     },
     "fficxx-projects": {
       "inputs": {
         "HROOT": "HROOT",
-        "fficxx": "fficxx",
+        "fficxx": "fficxx_2",
         "hgdal": "hgdal",
         "hs-ogdf": "hs-ogdf",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1651545538,
@@ -54,6 +55,23 @@
         "owner": "wavewave",
         "ref": "master",
         "repo": "fficxx-projects",
+        "type": "github"
+      }
+    },
+    "fficxx_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651445996,
+        "narHash": "sha256-7eyPL7kD+XiWl6xPLtZUq9X21Y+9CF6P+5rx2tmw1Mk=",
+        "owner": "wavewave",
+        "repo": "fficxx",
+        "rev": "98ce51453a2060b2545d50f9690a65e645aa71c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wavewave",
+        "ref": "0.6",
+        "repo": "fficxx",
         "type": "github"
       }
     },
@@ -107,8 +125,25 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1620055814,
+        "narHash": "sha256-8LEHoYSJiL901bTMVatq+rf8y7QtWuZhwwpKE2fyaRY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1db42b7fe3878f3f5f7a4f2dc210772fd080e205",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-20.03",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "fficxx": "fficxx",
         "fficxx-projects": "fficxx-projects"
       }
     }

@@ -18,42 +18,57 @@
       }
     },
     "fficxx": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
       "locked": {
-        "lastModified": 1651445996,
-        "narHash": "sha256-7eyPL7kD+XiWl6xPLtZUq9X21Y+9CF6P+5rx2tmw1Mk=",
-        "owner": "wavewave",
-        "repo": "fficxx",
-        "rev": "98ce51453a2060b2545d50f9690a65e645aa71c2",
-        "type": "github"
+        "lastModified": 1651631669,
+        "narHash": "sha256-BdNHDse/RnTU6zLsNVrrqGvOX9ZN/X+vn+SKv6Xq1fQ=",
+        "type": "git",
+        "url": "file:///home/wavewave/repo/src/fficxx"
       },
       "original": {
-        "owner": "wavewave",
-        "ref": "0.6",
-        "repo": "fficxx",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/wavewave/repo/src/fficxx"
       }
     },
     "fficxx-projects": {
       "inputs": {
         "HROOT": "HROOT",
-        "fficxx": "fficxx",
+        "fficxx": "fficxx_2",
         "hgdal": "hgdal",
         "hs-ogdf": "hs-ogdf",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1651545538,
-        "narHash": "sha256-2YIAXFMe6dgkr0GRv0w+H7EA28iowm2Vr2/sqIWV258=",
+        "lastModified": 1651545715,
+        "narHash": "sha256-Gji8nJHLqCKx1wWZWaRVMo6msb4DFRkc4X6MD0GRbP0=",
         "owner": "wavewave",
         "repo": "fficxx-projects",
-        "rev": "333e2562be35439987b6062bb8d0e056244dc7ed",
+        "rev": "ede0179c836f9081314a66759545e22187703160",
         "type": "github"
       },
       "original": {
         "owner": "wavewave",
         "ref": "master",
         "repo": "fficxx-projects",
+        "type": "github"
+      }
+    },
+    "fficxx_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651690367,
+        "narHash": "sha256-BdNHDse/RnTU6zLsNVrrqGvOX9ZN/X+vn+SKv6Xq1fQ=",
+        "owner": "wavewave",
+        "repo": "fficxx",
+        "rev": "388966e43f10a1f7370f61d1ab12a818804adede",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wavewave",
+        "ref": "0.6",
+        "repo": "fficxx",
         "type": "github"
       }
     },
@@ -107,8 +122,25 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1620055814,
+        "narHash": "sha256-8LEHoYSJiL901bTMVatq+rf8y7QtWuZhwwpKE2fyaRY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1db42b7fe3878f3f5f7a4f2dc210772fd080e205",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-20.03",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "fficxx": "fficxx",
         "fficxx-projects": "fficxx-projects"
       }
     }
