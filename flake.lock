@@ -1,13 +1,20 @@
 {
   "nodes": {
     "HROOT": {
-      "flake": false,
+      "inputs": {
+        "fficxx": [
+          "fficxx"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1651370590,
-        "narHash": "sha256-VHjPebuKt582KD9u/YDkNVQs/IsCZvtvChqg8K10M7Y=",
+        "lastModified": 1651773307,
+        "narHash": "sha256-gur1RiJXNtEB5qOdmMlS2TJnqpG4fLUaI6uRUBV8Pqg=",
         "owner": "wavewave",
         "repo": "HROOT",
-        "rev": "80dcacab62486274a726e3661dd7a0e9180e72de",
+        "rev": "75c19dca6ab50ab54cbad9d50cc2401ef2b778c0",
         "type": "github"
       },
       "original": {

@@ -8,7 +8,8 @@
     };
     HROOT = {
       url = "github:wavewave/HROOT/master";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.fficxx.follows = "fficxx";
     };
     hgdal = {
       url = "github:wavewave/hgdal/master";
@@ -23,17 +24,14 @@
   outputs = { self, nixpkgs, fficxx, HROOT, hgdal, hs-ogdf }:
     let
       pkgs = import nixpkgs {
-        overlays = [ fficxx.overlay ];
+        overlays = [ fficxx.overlay HROOT.overlay ];
         system = "x86_64-linux";
       };
 
       ogdf = pkgs.callPackage (hs-ogdf + "/ogdf") { };
 
       finalHaskellOverlay = self: super:
-        (import HROOT {
-          inherit pkgs;
-          fficxxSrc = fficxx;
-        } self super) // (import hgdal {
+        (import hgdal {
           inherit pkgs;
           fficxxSrc = fficxx;
         } self super) // (import hs-ogdf {
