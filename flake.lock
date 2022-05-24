@@ -55,11 +55,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1651778949,
-        "narHash": "sha256-Y+ei8EufXXrlxGYOQ7in0PsS0G4EKZq6+mZXNbWQvPQ=",
+        "lastModified": 1653406362,
+        "narHash": "sha256-SaMfC1yafIpzfwOmShY5tw+lIl9OR6Q8txPp7Wy4ODE=",
         "owner": "wavewave",
         "repo": "hgdal",
-        "rev": "ee8487bce6f7e58290f65baaf3b3ca020ed2a07e",
+        "rev": "37614c45f2d7e2a31e6e0f599d2d45649b0146b4",
         "type": "github"
       },
       "original": {
@@ -79,11 +79,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1651779151,
-        "narHash": "sha256-9Jh7wponRdgUY/+Q5ePSBtRR5gebqv5fWST/pys5wwc=",
+        "lastModified": 1653406560,
+        "narHash": "sha256-e4+r+cQkm5FcYngMgkwOH209Gk0ENxlmOxJBxBFgK4w=",
         "owner": "wavewave",
         "repo": "hs-ogdf",
-        "rev": "177b65f73a6c607b5cd083a0806d9341842fa8b0",
+        "rev": "a9ed74b8c71f62bb0be0799abc5e257f5e7acfe2",
         "type": "github"
       },
       "original": {
