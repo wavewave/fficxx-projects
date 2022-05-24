@@ -31,15 +31,11 @@
         system = "x86_64-linux";
       };
 
-      mkEnv = pkgname:
+      mkDevShell = hsPkgs: otherPkgs:
         let
-          hsenv = pkgs.haskellPackages.ghcWithPackages
-            (p: [ (builtins.getAttr pkgname p) ]);
-        in pkgs.mkShell { buildInputs = [ hsenv ]; };
-
-      HROOT-env = mkEnv "HROOT";
-      hgdal-env = mkEnv "hgdal";
-      OGDF-env = mkEnv "OGDF";
+          hsenv = pkgs.haskellPackages.ghcWithPackages (allHsPkgs:
+            builtins.map (pkg: builtins.getAttr pkg allHsPkgs) hsPkgs);
+        in pkgs.mkShell { buildInputs = [ hsenv ] ++ otherPkgs; };
 
     in {
       packages.x86_64-linux = {
@@ -48,17 +44,17 @@
           fficxx-runtime fficxx stdcxx HROOT HROOT-core HROOT-graf HROOT-hist
           HROOT-io HROOT-math HROOT-net HROOT-tree HROOT-RooFit
           HROOT-RooFit-RooStats hgdal OGDF;
-        inherit HROOT-env hgdal-env OGDF-env;
+        #inherit HROOT-env hgdal-env OGDF-env;
 
       };
 
-      devShell.x86_64-linux = with pkgs;
-        let
-          hsenv = haskellPackages.ghcWithPackages
-            (p: [ p.cabal-install p.fficxx p.fficxx-runtime p.stdcxx ]);
-        in mkShell {
-          buildInputs = [ hsenv ];
-          shellHook = "";
-        };
+      devShells.x86_64-linux = {
+        vanilla = mkDevShell [ "cabal-install" "fficxx" "stdcxx" ] [ ];
+        HROOT = mkDevShell [ "cabal-install" "HROOT" "monad-loops" ] [ ];
+        hgdal = mkDevShell [ "cabal-install" "hgdal" "monad-loops" ] [ ];
+        OGDF =
+          mkDevShell [ "cabal-install" "OGDF" "formatting" "monad-loops" ] [ ];
+      };
+
     };
 }
