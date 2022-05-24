@@ -48,7 +48,8 @@
 
       };
 
-      devShells.x86_64-linux = {
+      devShells.x86_64-linux = rec {
+        default = vanilla;
         vanilla = mkDevShell [ "cabal-install" "fficxx" "stdcxx" ] [ ];
         HROOT = mkDevShell [ "cabal-install" "HROOT" "monad-loops" ] [ ];
         hgdal = mkDevShell [ "cabal-install" "hgdal" "monad-loops" ] [ ];
