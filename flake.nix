@@ -1,7 +1,8 @@
 {
   description = "fficxx projects";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    flake-utils.url = "github:numtide/flake-utils";    
     fficxx = {
       url = "github:wavewave/fficxx/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,39 +24,45 @@
     };
 
   };
-  outputs = { self, nixpkgs, fficxx, HROOT, hgdal, hs-ogdf }:
-    let
-      pkgs = import nixpkgs {
-        overlays =
-          [ fficxx.overlay HROOT.overlay hgdal.overlay hs-ogdf.overlay ];
-        system = "x86_64-linux";
-      };
+  outputs = { self, nixpkgs, flake-utils, fficxx, HROOT, hgdal, hs-ogdf }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs {
+          overlays =
+            [ fficxx.overlay.${system}
+              HROOT.overlay.${system}
+              hs-ogdf.overlay.${system}
+              hgdal.overlay.${system}
+            ];
+          inherit system;
+        };
 
-      mkDevShell = hsPkgs: otherPkgs:
-        let
-          hsenv = pkgs.haskellPackages.ghcWithPackages (allHsPkgs:
-            builtins.map (pkg: builtins.getAttr pkg allHsPkgs) hsPkgs);
-        in pkgs.mkShell { buildInputs = [ hsenv ] ++ otherPkgs; };
+        mkDevShell = hsPkgs: otherPkgs:
+          let
+            hsenv = pkgs.haskellPackages.ghcWithPackages (allHsPkgs:
+              builtins.map (pkg: builtins.getAttr pkg allHsPkgs) hsPkgs);
+          in pkgs.mkShell { buildInputs = [ hsenv ] ++ otherPkgs; };
 
-    in {
-      packages.x86_64-linux = {
-        inherit (pkgs) ogdf;
-        inherit (pkgs.haskellPackages)
-          fficxx-runtime fficxx stdcxx HROOT HROOT-core HROOT-graf HROOT-hist
-          HROOT-io HROOT-math HROOT-net HROOT-tree HROOT-RooFit
-          HROOT-RooFit-RooStats hgdal OGDF;
-        #inherit HROOT-env hgdal-env OGDF-env;
+      in {
+        packages = {
+          inherit (pkgs) ogdf;
+          inherit (pkgs.haskellPackages)
+            fficxx-runtime fficxx stdcxx HROOT HROOT-core HROOT-graf HROOT-hist
+            HROOT-io HROOT-math HROOT-net HROOT-tree HROOT-RooFit
+            HROOT-RooFit-RooStats hgdal OGDF;
+          #inherit HROOT-env hgdal-env OGDF-env;
 
-      };
+        };
 
-      devShells.x86_64-linux = rec {
-        default = vanilla;
-        vanilla = mkDevShell [ "cabal-install" "fficxx" "stdcxx" ] [ ];
-        HROOT = mkDevShell [ "cabal-install" "HROOT" "monad-loops" ] [ ];
-        hgdal = mkDevShell [ "cabal-install" "hgdal" "monad-loops" ] [ ];
-        OGDF =
-          mkDevShell [ "cabal-install" "OGDF" "formatting" "monad-loops" ] [ ];
-      };
+        devShells = rec {
+          default = vanilla;
+          vanilla = mkDevShell [ "cabal-install" "fficxx" "stdcxx" ] [ ];
+          HROOT = mkDevShell [ "cabal-install" "HROOT" "monad-loops" ] [ ];
+          hgdal = mkDevShell [ "cabal-install" "hgdal" "monad-loops" ] [ ];
+          OGDF =
+            mkDevShell [ "cabal-install" "OGDF" "formatting" "monad-loops" ] [ ];
+        };
 
-    };
+      }
+ );
 }
